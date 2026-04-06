@@ -4,3 +4,5 @@ vllm
 torch
 deepspeed
 wandb
+qwen_vl_utils>=0.0.6
+decord
