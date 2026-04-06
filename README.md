@@ -30,35 +30,28 @@ pip install -r requirements.txt
 
 ## Usage
 
-All experiments use **Qwen2.5-VL-3B-Instruct**. Scripts auto-configure for single or multi-GPU.
+All experiments use **Qwen2.5-VL-3B-Instruct** on 8 GPUs (2 for vLLM server + 6 for training).
 
-### Single GPU
+### Step 1: Start the vLLM rollout server
 
-No separate vLLM server needed — uses **colocated mode** (vLLM shares the GPU with training):
-
-```bash
-NUM_GPUS=1 bash scripts/train_clevr_count.sh
-NUM_GPUS=1 bash scripts/train_geoqa.sh
-NUM_GPUS=1 bash scripts/train_open_r1_multimodal.sh
-```
-
-Single-GPU uses reduced batch sizes (2), fewer generations (4-8), and higher gradient accumulation (8) to compensate.
-
-### Multi-GPU (default: 8 GPUs)
-
-**Step 1:** Start the vLLM rollout server (uses 2 GPUs):
 ```bash
 bash scripts/start_vllm_server.sh
 ```
 
-**Step 2:** Run a training script (uses 6 GPUs):
+This launches the vLLM server on GPUs 6,7 for generation rollouts.
+
+### Step 2: Run a training script
+
 ```bash
+# ClevrCount (simplest - start here)
 bash scripts/train_clevr_count.sh
+
+# Geometric QA
 bash scripts/train_geoqa.sh
+
+# Multimodal Open R1
 bash scripts/train_open_r1_multimodal.sh
 ```
-
-You can customize GPU count: `NUM_GPUS=4 bash scripts/train_clevr_count.sh`
 
 ### WandB Logging
 
@@ -104,12 +97,11 @@ Or remove `--report_to wandb` from the training scripts to disable logging.
 
 ## GPU Configuration
 
-| Setup | vLLM Mode | vLLM GPUs | Training GPUs |
-|---|---|---|---|
-| Single GPU | colocated (shared) | — | 1 |
-| Multi-GPU (default) | external server | 2 (GPUs 6,7) | 6 (GPUs 0-5) |
+Edit `CUDA_VISIBLE_DEVICES` in the scripts to match your setup:
+- **vLLM server:** 2 GPUs (default: 6,7)
+- **Training:** 6 GPUs (default: 0,1,2,3,4,5)
 
-Override GPU assignment with `CUDA_VISIBLE_DEVICES` and `NUM_GPUS` environment variables.
+For fewer GPUs, reduce `NPROC_PER_NODE`, `vllm_data_parallel_size`, and adjust batch sizes accordingly.
 
 ## Troubleshooting
 
