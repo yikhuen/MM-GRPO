@@ -12,7 +12,7 @@
 TRAIN_SCRIPT=${1:?"Usage: $0 <training_script>"}
 VLLM_GPU=${VLLM_GPU:-6}               # GPU for vLLM server
 TRAIN_GPUS=${TRAIN_GPUS:-"0,1,2,3,4,5"}  # GPUs for training
-REQUIRED_FREE_MiB=${REQUIRED_FREE_MiB:-60000}  # ~75% of 80GB H100
+REQUIRED_FREE_MiB=${REQUIRED_FREE_MiB:-40000}  # ~50% of 80GB H100, enough for training
 CHECK_INTERVAL=${CHECK_INTERVAL:-60}
 LOG_DIR="logs"
 
