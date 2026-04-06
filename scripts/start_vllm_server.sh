@@ -5,7 +5,6 @@
 # Adjust CUDA_VISIBLE_DEVICES to match the GPUs you want to dedicate
 # to the vLLM server (separate from the training GPUs).
 
-CUDA_VISIBLE_DEVICES=6,7 \
+CUDA_VISIBLE_DEVICES=6 \
 swift rollout \
-    --model Qwen/Qwen2.5-VL-3B-Instruct \
-    --vllm_data_parallel_size 2
+    --model Qwen/Qwen2.5-VL-3B-Instruct
