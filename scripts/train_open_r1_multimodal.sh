@@ -36,13 +36,13 @@ swift rlhf \
     --vllm_server_host 127.0.0.1 \
     --vllm_server_port 8000 \
     --tuner_type full \
-    --torch_dtype bfloat16 \
+    --torch_dtype float16 \
     --dataset 'lmms-lab/multimodal-open-r1-8k-verified' \
     --load_from_cache_file true \
     --max_completion_length 1024 \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 8 \
-    --per_device_eval_batch_size 8 \
+    --per_device_train_batch_size 4 \
+    --per_device_eval_batch_size 4 \
     --learning_rate 1e-6 \
     --gradient_accumulation_steps 2 \
     --save_strategy 'steps' \

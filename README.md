@@ -1,3 +1,4 @@
+
 # Multimodal GRPO Training
 
 Train multimodal vision-language models using GRPO (Group Relative Policy Optimization) with [ms-swift](https://github.com/modelscope/ms-swift). Based on the [SWIFT Multimodal GRPO Best Practices](https://swift.readthedocs.io/en/latest/BestPractices/GRPO-Multi-Modal-Training.html), referencing [R1-V](https://github.com/Deep-Agent/R1-V) and [open-r1-multimodal](https://github.com/EvolvingLMMs-Lab/open-r1-multimodal).
