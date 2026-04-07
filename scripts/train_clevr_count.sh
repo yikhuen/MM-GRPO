@@ -17,6 +17,7 @@
 export WANDB_API_KEY=${WANDB_API_KEY:-"your_wandb_api_key"}
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5 \
+PYTORCH_ALLOC_CONF=expandable_segments:True \
 NPROC_PER_NODE=6 \
 swift rlhf \
     --rlhf_type grpo \
@@ -33,8 +34,8 @@ swift rlhf \
     --load_from_cache_file true \
     --max_completion_length 1024 \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 4 \
-    --per_device_eval_batch_size 4 \
+    --per_device_train_batch_size 2 \
+    --per_device_eval_batch_size 2 \
     --learning_rate 1e-6 \
     --gradient_accumulation_steps 2 \
     --save_strategy 'steps' \
@@ -49,6 +50,7 @@ swift rlhf \
     --num_generations 8 \
     --temperature 1.0 \
     --system 'examples/train/grpo/prompt.txt' \
+    --gradient_checkpointing true \
     --deepspeed zero3 \
     --log_completions true \
     --report_to wandb \
