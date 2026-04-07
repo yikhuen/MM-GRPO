@@ -56,4 +56,5 @@ swift rlhf \
     --report_to wandb \
     --num_iterations 1 \
     --async_generate false \
-    --beta 0.001
+    --beta 0.001 \
+    --max_grad_norm 0.5
