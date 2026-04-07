@@ -8,4 +8,5 @@
 CUDA_VISIBLE_DEVICES=6 \
 swift rollout \
     --model Qwen/Qwen2.5-VL-3B-Instruct \
-    --vllm_gpu_memory_utilization 0.2
+    --vllm_gpu_memory_utilization 0.2 \
+    --dtype half
