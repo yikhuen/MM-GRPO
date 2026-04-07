@@ -40,7 +40,7 @@ swift rlhf \
     --save_strategy 'steps' \
     --eval_strategy 'steps' \
     --eval_steps 1000 \
-    --save_steps 1000 \
+    --save_steps 100 \
     --save_total_limit 10 \
     --logging_steps 1 \
     --output_dir output/GRPO_CLEVR_COUNT \
