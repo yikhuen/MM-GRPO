@@ -51,7 +51,7 @@ swift rlhf \
     --temperature 1.0 \
     --system 'examples/train/grpo/prompt.txt' \
     --gradient_checkpointing true \
-    --deepspeed zero3 \
+    --deepspeed configs/ds_zero3_v100.json \
     --log_completions true \
     --report_to wandb \
     --num_iterations 1 \
